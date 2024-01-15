@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RoomDbDemo</string>
+    <string name="user_name">User Name</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="save">Save</string>
 </resources>
