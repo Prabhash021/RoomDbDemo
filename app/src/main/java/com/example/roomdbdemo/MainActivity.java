@@ -2,6 +2,7 @@ package com.example.roomdbdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         userPhNum = findViewById(R.id.ph_num);
         addDataToRoom = findViewById(R.id.saveBt);
 
+//        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(this);
-
         addDataToRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,9 +36,26 @@ public class MainActivity extends AppCompatActivity {
 
                 databaseHelper.userDataDao().addData(new userData(userNameGet, userAdrsGet, userPhNumGet));
 
-//                ArrayList<userData> arrayList = (ArrayList<userData>) databaseHelper.userDataDao().getAllUserData();
+                ArrayList<userData> arrayList = (ArrayList<userData>) databaseHelper.userDataDao().getAllUserData();
+
+                /*userData userData = new userData(userNameGet,userAdrsGet,userPhNumGet);
+                InsertAsyncTask insertAsyncTask = new InsertAsyncTask();
+                insertAsyncTask.execute(userData);*/
 
             }
         });
     }
+
+    /*class InsertAsyncTask extends AsyncTask<userData, Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(userData... userData) {
+
+            DatabaseHelper.getInstance(getApplicationContext())
+                    .userDataDao()
+                    .addData(userData[0]);
+
+            return null;
+        }
+    }*/
 }
